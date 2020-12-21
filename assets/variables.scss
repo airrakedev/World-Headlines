@@ -1,0 +1,22 @@
+@import "~vuetify/src/styles/styles.sass";
+
+$body-font-family: "Quicksand", sans-serif;
+$heading-font-family: "Quicksand", sans-serif;
+
+$menu-content-elevation: 2 !default;
+
+$border-top: 0.25px solid rgb(224 224 224);
+
+$border-right: 0.25px solid rgb(224 224 224);
+$border-bottom: 0.25px solid rgb(224 224 224);
+$border-left: 0.25px solid rgb(224 224 224);
+
+%default-color {
+  color: #4a148c !important;
+  caret-color: #4a148c !important;
+}
+
+%secondary-color {
+  color: #546e7a !important;
+  caret-color: #546e7a !important;
+}
