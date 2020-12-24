@@ -70,6 +70,7 @@ export default {
     async selectCountry (country) {
       await this.$store.dispatch("app-native/changeCountry", country)
       await this.$store.dispatch("apiCall/apiQuery")
+      this.$router.push("/")
     }
   },
 }

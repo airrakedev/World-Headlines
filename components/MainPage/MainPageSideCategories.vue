@@ -11,6 +11,7 @@
     >
       <v-list-item
         class="py-1 px-1"
+        :class="getSelectedCategory != category.name? `` : `category-active`"
         @click.prevent="changeCategory(category.name)"
       >
         <v-list-item-avatar class="ma-0 mr-2 mt-0 pa-2">
@@ -42,6 +43,9 @@ export default {
   computed: {
     getAllNewsCategories () {
       return this.$store.getters["app-native/GET_ALL_NEWS_CATEGORIES"]
+    },
+    getSelectedCategory () {
+      return this.$store.getters["app-native/GET_NEWS_CATEGORY"]
     }
   },
   methods: {

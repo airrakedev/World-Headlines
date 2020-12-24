@@ -4,12 +4,14 @@ export default {
   state: () => ({
     snackBarStatus: false,
     snackBarTimeout: 4000,
-    snackBarMessage: ""
+    snackBarMessage: "",
+    loader: false
   }),
   getters: {
     GET_SNACKBAR_STATUS: state => state.snackBarStatus,
     GET_SNACKBAR_TIMEOUT: state => state.snackBarTimeout,
-    GET_SNACKBAR_MESSAGE: state => state.snackBarMessage
+    GET_SNACKBAR_MESSAGE: state => state.snackBarMessage,
+    GET_LOADER: state => state.loader
   },
   mutations: {
     settingSnackbar (state, payload) {
@@ -18,13 +20,17 @@ export default {
       state.snackBarTimeout = timeout
       state.snackBarMessage = message
     },
-
+    setLoaderStatus (state) {
+      state.loader = !state.loader
+    }
   },
   actions: {
 
     setSnackbar ({ commit }, payload) {
       commit("settingSnackbar", payload)
-      console.log(payload, "boom")
+    },
+    setLoader ({ commit }) {
+      commit("setLoaderStatus")
     }
   }
 }

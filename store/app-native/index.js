@@ -297,7 +297,8 @@ export default {
     headlines: [],
     leadHeadline: {},
     listHeadlines: [],
-    moreHeadlines: []
+    moreHeadlines: [],
+    topStories: []
   }),
   getters: {
     GET_ALL_COUNTRIES: state => state.newsByCountries,
@@ -308,7 +309,8 @@ export default {
     GET_HEADLINES: state => state.headlines,
     GET_LEAD_HEADLINE: state => state.leadHeadline,
     GET_LIST_HEADLINES: state => state.listHeadlines,
-    GET_MORE_HEADLINES: state => state.moreHeadlines
+    GET_MORE_HEADLINES: state => state.moreHeadlines,
+    GET_TOP_STORIES: state => state.topStories
   },
 
   mutations: {
@@ -330,7 +332,8 @@ export default {
         // check if the headline result is more than 10, where the remaining all headlines minus the leadHeadline
         // and the listheadline is still more 10, then we only get only 10 but it is less than 10 then we get the remaining headline for the moreheadlines
         state.moreHeadlines = payload.slice(5, (remain > 10) ? 17 : result)
-
+        // top stories
+        state.topStories = payload.slice(result - 6, result)
       }
     },
     setCategory (state, payload) {

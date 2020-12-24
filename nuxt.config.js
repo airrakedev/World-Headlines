@@ -1,3 +1,4 @@
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -12,7 +13,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ["~/assets/main.scss"],
+  css: ["~/assets/main.scss", "~/assets/main.css"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ["~/plugins/axios"],
@@ -31,7 +32,40 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ["@nuxtjs/axios"],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/firebase"
+  ],
+
+  firebase: {
+    config: {
+      apiKey: "AIzaSyCA-DBWYbtYcy5agmQ43SGnsI0af3Eb3GE",
+      authDomain: "news-nuxt.firebaseapp.com",
+      databaseURL: "<databaseURL>",
+      projectId: "news-nuxt",
+      storageBucket: "news-nuxt.appspot.com",
+      messagingSenderId: "891396339315",
+      appId: "1:891396339315:web:527ed76f83096e58c39c06",
+      measurementId: "<measurementId>"
+    },
+    services: {
+      auth: {
+        persistence: "local", // default
+        initialize: {
+          onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
+          onAuthStateChangedAction: "onAuthStateChangedAction",
+          subscribeManually: false
+        },
+        ssr: false, // default
+        // emulatorPort: 9099,
+        emulatorPort: process.env.NODE_ENV === "development" ? 9099 : undefined,
+        emulatorHost: "http://localhost"
+      },
+      firestore: true // Just as example. Can be any other service.
+    },
+    lazy: true
+
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
@@ -56,8 +90,7 @@ export default {
   router: {
     mode: "history"
   },
-  layoutTransition: {
-    name: "layout",
-    mode: "out-in"
-  }
+  pageTransition: "slide-bottom",
+  layoutTransition: "slide-bottom"
+
 }

@@ -8,8 +8,13 @@
     dense
   >
 
-    <v-toolbar-title class="title mx-5 mt-2 font-weight-bold purple--text text--darken-4">
-      The Whisperer
+    <v-toolbar-title class="title mx-5 mt-2 font-weight-bold">
+      <NuxtLink
+        to="/"
+        class="purple--text text--darken-4"
+      >
+        The Whisperer
+      </NuxtLink>
     </v-toolbar-title>
     <v-spacer />
     <v-row
@@ -24,6 +29,7 @@
         color="purple darken-4"
         dark
         class="caption font-weight-bold pa-4"
+        @click="register"
       >
         <v-icon
           small
@@ -55,7 +61,8 @@
                 v-for="(country,i) in getNewsByCountries"
                 :key="i"
                 href="#"
-                class="text-uppercase caption font-weight-bold blue-grey--text text--darken-1 px-4"
+                class="text-uppercase font-weight-bold  px-4"
+                :class="country.name != getSelectedCountry? `caption  blue-grey--text text--darken-1` : `country-active`"
                 @click="selectCountry(country.name)"
               >{{ country.title }}</a>
 
@@ -70,7 +77,15 @@
           </v-col>
         </v-row>
       </v-container>
+      <v-progress-linear
+        :active="loading"
+        :indeterminate="loading"
+        absolute
+        bottom
+        color="deep-purple accent-4"
+      />
     </template>
+
   </v-app-bar>
 </template>
 
@@ -80,12 +95,22 @@ export default {
   computed: {
     getNewsByCountries () {
       return this.$store.getters["app-native/GET_ALL_COUNTRIES"].filter(item => item.top)
+    },
+    getSelectedCountry () {
+      return this.$store.getters["app-native/GET_COUNTRY"]
+    },
+    loading () {
+      return this.$store.getters["app-various/GET_LOADER"]
     }
   },
   methods: {
     async selectCountry (country) {
       await this.$store.dispatch("app-native/changeCountry", country)
       await this.$store.dispatch("apiCall/apiQuery")
+      this.$router.push("/")
+    },
+    register () {
+      this.$router.push("/register")
     }
   }
 }
