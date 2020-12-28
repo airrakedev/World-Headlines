@@ -1,6 +1,7 @@
 import AppNative from "./app-native"
 import apiCall from "./apiCall"
 import appVarious from "./app-various"
+import auth from "./auth"
 
 const actions = {
   async nuxtServerInit ({ state, commit, dispatch, rootState, rootGetters }, { $axios, redirect }) {
@@ -19,6 +20,7 @@ const actions = {
 }
 
 export default {
+  auth,
   AppNative,
   apiCall,
   appVarious,

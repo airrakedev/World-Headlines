@@ -14,7 +14,7 @@
           elevation="2"
           class="pa-5"
         >
-          <h2 class="text-center purple--text text--darken-4 mb-3 mt-3">Create your Account</h2>
+          <h2 class="text-center purple--text text--darken-4 mb-3 mt-3">Login your Account</h2>
           <form
             class="pa-5 pb-0"
             @submit.prevent="submit"
@@ -45,24 +45,9 @@
               @input="$v.user.email.$touch()"
               @blur="$v.user.email.$touch()"
             />
-            <v-text-field
-              v-model="user.passwordConfirm"
-              :type="showConfirm ? `text` : `password`"
-              :error-messages="confirmPasswordErrors"
-              placeholder="Confirm password"
-              color="purple darken-4"
-              clearable
-              :counter="20"
-              :append-icon="showConfirm ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
-              solo
-              prepend-inner-icon="mdi-lock-check-outline"
-              @click:append="showConfirm = !showConfirm"
-              @input="$v.user.email.$touch()"
-              @blur="$v.user.email.$touch()"
-            />
             <div class="text-center body-2">
-              Already have an account?<NuxtLink to="/login">
-                Log In Here
+              Don't have an account?<NuxtLink to="/register">
+                Signup here
               </NuxtLink>
             </div>
             <div class="text-center mt-3">
@@ -76,7 +61,7 @@
                 :disabled="disableSubmit"
                 class="white--text"
               >
-                Register
+                Signin
               </v-btn>
 
             </div>
@@ -98,7 +83,7 @@
 
 <script>
 import { validationMixin } from "vuelidate"
-import { required, maxLength, minLength, email, sameAs } from "vuelidate/lib/validators"
+import { required, maxLength, minLength, email } from "vuelidate/lib/validators"
 
 export default {
   name: "Register",
@@ -110,19 +95,16 @@ export default {
   validations: {
     user: {
       email: { required, email },
-      password: { required, minLength: minLength(4), maxLength: maxLength(20) },
-      passwordConfirm: { sameAsPassword: sameAs("password") }
+      password: { required, minLength: minLength(4), maxLength: maxLength(20) }
     }
   },
 
   data: () => ({
     user: {
       email: "",
-      password: "",
-      passwordConfirm: ""
+      password: ""
     },
     showPassword: false,
-    showConfirm: false,
     disableSubmit: false
 
   }),
@@ -141,12 +123,6 @@ export default {
       !this.$v.user.password.maxLength && errors.push("Password should be less than 20 characters")
       !this.$v.user.password.required && errors.push("Password is required")
       return errors
-    },
-    confirmPasswordErrors () {
-      const errors = []
-      if (!this.$v.user.passwordConfirm.$dirty) { return errors }
-      !this.$v.user.passwordConfirm.sameAsPassword && errors.push("Please confirm your password.")
-      return errors
     }
   },
 
@@ -158,10 +134,10 @@ export default {
       if (!this.$v.$error && !this.$v.$anyError) {
         this.disableSubmit = true
         try {
-          await this.$fire.auth.createUserWithEmailAndPassword(this.user.email, this.user.password)
+          await this.$fire.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
             .then(user => {
               this.disableSubmit = false
-              this.$store.dispatch("app-various/setSnackbar", { status: true, timeout: 5000, message: "You have successfully registered!", iconSuccess: true })
+              this.$store.dispatch("app-various/setSnackbar", { status: true, timeout: 5000, message: "You're sign in!", iconSuccess: true })
               // set user auth
               this.$store.dispatch("auth/onAuthStateChangedAction", user)
               // route back
@@ -169,8 +145,7 @@ export default {
               // clear input content
               this.user = {
                 email: "",
-                passwor: "",
-                passwordConfirm: ""
+                passwor: ""
               }
             })
             .catch(error => {
@@ -181,7 +156,6 @@ export default {
           this.disableSubmit = false
           console.log(error.message, "error")
         }
-
       }
     }
   }

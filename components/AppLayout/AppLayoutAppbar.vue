@@ -18,29 +18,104 @@
     </v-toolbar-title>
     <v-spacer />
     <v-row
-      class="mt-5"
-      align="center"
       justify="end"
+      align="center"
+      class="mt-3"
     >
-      <v-btn
-        small
-        elevation="1"
-        rounded
-        color="purple darken-4"
-        dark
-        class="caption font-weight-bold pa-4"
-        @click="register"
-      >
-        <v-icon
+      <div v-show="!isAuthenticated">
+        <v-btn
           small
-          class="pr-1"
-        >mdi-account-edit-outline</v-icon>
-        <span>Signup</span>
-      </v-btn>
-      <a
-        href="#"
-        class="mx-4 body-1 font-weight-bold text-uppercase"
-      > Login</a>
+          elevation="1"
+          rounded
+          color="purple darken-4"
+          dark
+          class="caption font-weight-bold pa-4"
+          @click="register"
+        >
+          <v-icon
+            small
+            class="pr-1"
+          >
+            mdi-account-edit-outline
+          </v-icon>
+          <span>Signup</span>
+        </v-btn>
+        <Nuxt-link
+          to="/login"
+          class="mx-4 body-1 font-weight-bold text-uppercase blue-grey--text darken-4"
+        >
+          Login
+        </Nuxt-link>
+      </div>
+
+      <div v-show="isAuthenticated">
+        <v-menu
+          :close-on-content-click="true"
+          :nudge-width="120"
+          offset-y
+          transition="slide-x-transition"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-bind="attrs"
+              class="pr-5"
+              v-on="on"
+            >
+              <v-avatar
+                size="50"
+                class=""
+              >
+                <v-img
+                  alt=""
+                  :src="user.photoURL != null ? user.photoURL : 'https://instagram.inoutmkt.com.br/assets/img/no-avatar.png'"
+                  :lazy-src="'https://instagram.inoutmkt.com.br/assets/img/no-avatar.png'"
+                />
+              </v-avatar>
+              <span class="purple--text text--darken-4 font-weight-bold text-capitalize pl-2">
+                {{ user.displayName != null? user.displayName : "Hello There!" }}
+              </span>
+            </div>
+          </template>
+
+          <v-card>
+            <v-list-item-group>
+              <v-list-item @click="$store.dispatch('app-various/setUserProfileDialog', true)">
+                <v-list-item-icon class="mr-3">
+                  <v-icon>mdi-account-circle-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase font-weight-bold caption blue-grey--text text-darken-4">
+                    Profile
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider />
+              <v-list-item
+                v-show="isAuthenticated"
+                @click="$store.dispatch('app-various/setMyBookmark', true)"
+              >
+                <v-list-item-icon class="mr-3">
+                  <v-icon>mdi-bookmark-multiple-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase font-weight-bold caption blue-grey--text text-darken-4">
+                    My Bookmark
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider />
+              <v-list-item @click="$store.dispatch('auth/logout')">
+                <v-list-item-icon class="mr-3">
+                  <v-icon color="warning">mdi-power</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase font-weight-bold caption blue-grey--text text-darken-4">Logout</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-card>
+        </v-menu>
+      </div>
     </v-row>
     <template v-slot:extension>
       <v-container
@@ -85,23 +160,34 @@
         color="deep-purple accent-4"
       />
     </template>
-
+    <LazyAppDialogUserProfile />
   </v-app-bar>
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
   name: "AppLayoutAppbar",
+  data () {
+    return {
+      openProfile: false
+    }
+  },
   computed: {
+    ...mapGetters("app-native", {
+      getSelectedCountry: "GET_COUNTRY"
+    }),
+    ...mapGetters("app-various", {
+      loading: "GET_LOADER"
+    }),
+    ...mapGetters("auth", {
+      user: "getUser",
+      isAuthenticated: "isAuthenticated"
+    }),
     getNewsByCountries () {
       return this.$store.getters["app-native/GET_ALL_COUNTRIES"].filter(item => item.top)
-    },
-    getSelectedCountry () {
-      return this.$store.getters["app-native/GET_COUNTRY"]
-    },
-    loading () {
-      return this.$store.getters["app-various/GET_LOADER"]
     }
+
   },
   methods: {
     async selectCountry (country) {

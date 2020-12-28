@@ -5,6 +5,7 @@
     :multi-line="multiLine"
     color="purple darken-4"
   >
+    <v-icon class="pr-2">{{ snackBarIconSuccess? "mdi-checkbox-marked-circle" : "mdi-close-circle-outline" }}</v-icon>
     <span
       class="font-weight-bold"
       v-text="snackBarMessage"
@@ -26,7 +27,8 @@ export default {
     /* eslint-disable */
     ...mapGetters("app-various", {
       snackBarTimeout: "GET_SNACKBAR_TIMEOUT",
-      snackBarMessage: "GET_SNACKBAR_MESSAGE"
+      snackBarMessage: "GET_SNACKBAR_MESSAGE",
+      snackBarIconSuccess: "GET_SNACKBAR_ICON_SUCCESS"
     }),
     snackBarStatus: {
       get: function () {

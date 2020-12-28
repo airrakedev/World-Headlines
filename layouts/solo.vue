@@ -6,7 +6,7 @@
         <nuxt />
       </v-container>
     </v-main>
-
+    <LazyAppVariousSnackbar />
   </v-app>
 </template>
 
