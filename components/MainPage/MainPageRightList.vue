@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mx-auto main-feature-wrapper"
+    class="mx-auto list-headline-wrapper"
     flat
     tile
   >
@@ -11,13 +11,31 @@
       <template v-for="(headline, i) in listHeadlines">
         <v-list-item
           :key="i"
-          class="px-0 mb-2 main-feature-content"
+          class="px-0 mb-2 list-headline-content"
         >
           <NuxtLink :to="slugUrl(headline.title)">
-            <v-list-item-content class="py-2">
+            <v-list-item-content class="py-2 list-">
               <v-list-item-subtitle class="caption text-uppercase font-weight-bold mb-2 purple--text text--darken-1">{{ headline.source.name }}</v-list-item-subtitle>
               <h4 class="font-weight-black  blue-grey--text text--darken-1">{{ headline.title }}</h4>
               <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ headline.publishedAt }}</v-list-item-subtitle>
+
+              <v-tooltip top>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    small
+                    class="bookmark-btn"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+
+                    <v-icon color="blue-grey darken-4">mdi-bookmark-check</v-icon>
+
+                  </v-btn>
+                </template>
+                <span>Bookmark headline</span>
+              </v-tooltip>
+
             </v-list-item-content>
           </NuxtLink>
         </v-list-item>
@@ -30,6 +48,11 @@
 import { mapGetters } from "vuex"
 export default {
   name: "MainPageRightList",
+  data () {
+    return {
+      positionFab: true
+    }
+  },
   computed: {
     ...mapGetters("app-native", {
       listHeadlines: "GET_LIST_HEADLINES"
@@ -46,12 +69,20 @@ export default {
 </script>
 
 <style lang="scss">
-.main-feature-wrapper {
-  .main-feature-content {
+.list-headline-wrapper {
+  .list-headline-content {
+    position: relative;
+
     &:first-child {
       .v-list-item__content {
         padding-top: 0 !important;
       }
+    }
+
+    .bookmark-btn {
+      position: absolute;
+      top: -5px;
+      right: 0;
     }
   }
 }

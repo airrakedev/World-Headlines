@@ -41,7 +41,7 @@ export default {
           const { articles } = search.data
 
           if (articles.length < 1) {
-            dispatch("app-various/setSnackbar", { status: true, timeout: 4000, message: `No article found for ${payload}.` }, { root: true })
+            dispatch("app-various/setSnackbar", { status: true, timeout: 4000, message: `No article found for ${payload}.`, iconSuccess: false }, { root: true })
             return
           }
 

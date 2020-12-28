@@ -173,7 +173,7 @@ export default {
           return true
         }
       }
-      this.$store.dispatch("app-various/setSnackbar", { status: true, timeout: 4000, message: `Article details not available.` }, { root: true })
+      this.$store.dispatch("app-various/setSnackbar", { status: true, timeout: 4000, message: `Article details not available.`, iconSuccess: false }, { root: true })
       return this.$router.push("/")
 
     }

@@ -16,7 +16,10 @@ export default {
   css: ["~/assets/main.scss", "~/assets/main.css"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ["~/plugins/axios"],
+  plugins: [
+    "~/plugins/axios",
+    { src: "~/plugins/persistedState" }
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -44,25 +47,24 @@ export default {
       projectId: "news-nuxt",
       storageBucket: "news-nuxt.appspot.com",
       messagingSenderId: "891396339315",
-      appId: "1:891396339315:web:527ed76f83096e58c39c06",
-      measurementId: "<measurementId>"
+      appId: "1:891396339315:web:527ed76f83096e58c39c06"
     },
     services: {
       auth: {
         persistence: "local", // default
         initialize: {
-          onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
-          onAuthStateChangedAction: "onAuthStateChangedAction",
+          // onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
+          onAuthStateChangedAction: "auth/onAuthStateChangedAction",
           subscribeManually: false
         },
-        ssr: false, // default
-        // emulatorPort: 9099,
-        emulatorPort: process.env.NODE_ENV === "development" ? 9099 : undefined,
+        ssr: true, // default
+        emulatorPort: undefined,
+        // emulatorPort: process.env.NODE_ENV === "development" ? 9099 : undefined,
         emulatorHost: "http://localhost"
       },
       firestore: true // Just as example. Can be any other service.
     },
-    lazy: true
+    lazy: false
 
   },
 
@@ -81,8 +83,7 @@ export default {
   env: {
     NEWS_API_KEY: "fc260dbc90004fb6bdd10fc07b07a5fb",
     // http://newsapi.org/v2/top-headlines?country=us&apiKey=fc260dbc90004fb6bdd10fc07b07a5fb
-    NEWS_API_URL: "http://newsapi.org/v2/",
-    FIREBASE_API: "sdnfkjsdfjksdhfjk"
+    NEWS_API_URL: "http://newsapi.org/v2/"
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

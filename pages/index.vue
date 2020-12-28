@@ -18,7 +18,7 @@
       >
         <v-container
           fill-height
-          class="pa-0"
+          class="px-0"
         >
           <v-row
             justify="center"
@@ -63,6 +63,8 @@
 <script>
 
 export default {
+  name: "DefaultPage",
+  scrollToTop: true
 
 }
 </script>
