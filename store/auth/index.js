@@ -10,6 +10,7 @@ export default {
     },
     authenticated: false,
     headlines: []
+
   }),
   getters: {
     getUser: state => state.user,
@@ -17,8 +18,9 @@ export default {
     getHeadlines: state => state.headlines
   },
   mutations: {
+  /*eslint-disable*/
     SET_HEADLINE (state, payload) {
-      state.headlines = [...payload]
+      state.headlines = payload
     },
     UPDATE_AUTH_USER (state, payload) {
       const { displayName, photoURL } = payload
@@ -40,30 +42,41 @@ export default {
       }
       state.authenticated = false
     }
+
   },
   actions: {
     /*eslint-disable */
-    bookmark_headline ({ commit }, payload) {
+    updateHeadline ({ commit }, payload) {
       commit("SET_HEADLINE", payload)
     },
-    onAuthStateChangedAction: ({ commit }, { authUser, claims }) => {
+
+    onAuthStateChangedAction: ({ commit, dispatch }, { authUser, claims }) => {
+
       if (!authUser) {
         // claims = null
         // Perform logout operations
         commit("DE_AUTH_USER")
+
       } else {
         // Do something with the authUser and the claims object...
         console.log(authUser, "dispatch")
         commit("AUTH_USER", authUser)
+        // dispatch users bookmark
+        dispatch("apiCall/featchAllBookmark", null, { root: true })
       }
     },
     updateAuthUser ({ commit }, payload) {
       commit("UPDATE_AUTH_USER", payload)
     },
 
-    async logout () {
-      await this.$fire.auth.signOut()
+    async logout ({ state, commit }) {
+      // remove listener
+      commit("apiCall/RESET_STORE", null, { root: true })
 
+      await this.$fire.auth.signOut()
+      // empty all api fetch headlines
+      commit("SET_HEADLINE", [])
+      // remove cookies
       Cookies.remove("vuex", { path: "" })
 
       this.$router.push('/')

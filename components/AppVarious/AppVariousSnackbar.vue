@@ -5,7 +5,11 @@
     :multi-line="multiLine"
     color="purple darken-4"
   >
-    <v-icon class="pr-2">{{ snackBarIconSuccess? "mdi-checkbox-marked-circle" : "mdi-close-circle-outline" }}</v-icon>
+    <v-icon
+      :color="snackBarIconSuccess? `white` : `error`"
+      class="pr-2"
+      large
+    >{{ snackBarIconSuccess? "mdi-checkbox-marked-circle" : "mdi-close-circle-outline" }}</v-icon>
     <span
       class="font-weight-bold"
       v-text="snackBarMessage"

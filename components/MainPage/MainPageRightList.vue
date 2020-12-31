@@ -19,22 +19,7 @@
               <h4 class="font-weight-black  blue-grey--text text--darken-1">{{ headline.title }}</h4>
               <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ headline.publishedAt }}</v-list-item-subtitle>
 
-              <v-tooltip top>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    icon
-                    small
-                    class="bookmark-btn"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-
-                    <v-icon color="blue-grey darken-4">mdi-bookmark-check</v-icon>
-
-                  </v-btn>
-                </template>
-                <span>Bookmark headline</span>
-              </v-tooltip>
+              <LazyAppExtraBookmark :headline="headline" />
 
             </v-list-item-content>
           </NuxtLink>
@@ -59,9 +44,11 @@ export default {
     })
   },
   methods: {
-    /* eslint-disable*/
     slugUrl (url) {
       return `/headline/${encodeURIComponent(url.toLowerCase())}`
+    },
+    async bookmarkHeadline (headline) {
+      await this.$store.dispatch("apiCall/bookmarkHeadline", headline)
     }
   }
 
@@ -79,11 +66,11 @@ export default {
       }
     }
 
-    .bookmark-btn {
-      position: absolute;
-      top: -5px;
-      right: 0;
-    }
+    // .bookmark-btn {
+    //   position: absolute;
+    //   top: -5px;
+    //   right: 0;
+    // }
   }
 }
 </style>

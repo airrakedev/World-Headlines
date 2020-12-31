@@ -3,6 +3,7 @@
     v-model="myBookmark"
     absolute
     temporary
+    width="350"
   >
     <v-container v-if="!headlines.length">
       <v-row
@@ -32,40 +33,40 @@
       </v-row>
     </v-container>
     <v-list
-      v-if="!headlines.length"
+      v-if="headlines.length"
       two-line
     >
-      <v-subheader class="font-weight-bold purple--text text--darken-4">
+      <h3 class="font-weight-bold purple--text text--darken-4 text-center mt-3 mb-4">
         <v-icon
           class="mr-2"
           color="purple darken-4"
         >mdi-bookmark-multiple</v-icon>
         My Bookmark Articles
-      </v-subheader>
-
+      </h3>
+      <v-divider class="mb-3" />
       <v-list-item
-        v-for="(item, i) in items"
+        v-for="(headline, i) in headlines"
         :key="i"
       >
-        <v-list-item-avatar>
-          <v-icon
-            class="grey lighten-1"
-            dark
-          >
-            mdi-folder
-          </v-icon>
+        <v-list-item-avatar class="my-2">
+          <v-img
+            lazy-src="https://picsum.photos/id/11/10/6"
+            :src="headline.urlToImage"
+          />
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title
-            class="font-weight-bold blue-grey--text text--darken-4"
-            v-text="item.title"
+            class="font-weight-bold blue-grey--text text--darken-4 body-2"
+            v-text="headline.title"
           />
-          <v-list-item-subtitle class="purple--text text--darken-4 font-weight-bold caption">BBC</v-list-item-subtitle>
+          <v-list-item-subtitle class="purple--text text--darken-4 font-weight-bold caption">
+            {{ headline.source.name }}
+          </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <!-- <v-icon color="blue-grey darken-4">mdi-dots-vertical</v-icon> -->
 
-          <LazyAppMenusBookmark :headline="item.title" />
+          <LazyAppMenusBookmark :headline="headline.title" />
         </v-list-item-action>
       </v-list-item>
     </v-list>
@@ -107,6 +108,12 @@ export default {
         this.$store.commit("app-various/settingMyBookmark", status)
       }
     }
-  }
+  },
+  mounted () {
+    if (this.$store.getters["auth/isAuthenticated"]) {
+      this.$store.dispatch("apiCall/featchAllBookmark")
+      console.log("initialize")
+    }
+  },
 }
 </script>

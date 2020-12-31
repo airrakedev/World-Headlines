@@ -125,7 +125,6 @@
         <v-row
           align="center"
           justify="center"
-          class="mb-3"
         >
           <v-col
             cols="10"

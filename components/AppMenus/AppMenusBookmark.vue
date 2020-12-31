@@ -22,18 +22,26 @@
         :key="index"
         class="text-center"
       >
-        <v-list-item-title v-if="item.action">
+        <v-list-item-title v-if="item.remove">
           <v-btn
             color="error"
             plain
             class="caption font-weight-bold pa-0"
             @click="removeHeadline"
-          >{{ item.title }}</v-btn>
+          >
+            <v-icon class="mr-2">{{ item.icon }}</v-icon>
+            {{ item.title }}
+          </v-btn>
         </v-list-item-title>
-        <v-list-item-title
-          v-else
-          class="text-uppercase caption font-weight-bold blue-grey--text text--darken-4"
-        >{{ item.title }}</v-list-item-title>
+        <NuxtLink :to="slugUrl(headline)">
+          <v-list-item-title
+            v-if="item.preview"
+            class="text-uppercase caption font-weight-bold blue-grey--text text--darken-4"
+          >
+            <v-icon class="mr-2">{{ item.icon }}</v-icon>
+            {{ item.title }}
+          </v-list-item-title>
+        </NuxtLink>
       </v-list-item>
     </v-list>
   </v-menu>
@@ -52,16 +60,20 @@ export default {
   data () {
     return {
       items: [
-        { title: "Preview", action: false },
-        { title: "Remove", action: true }
+        { title: "Preview", preview: true, icon: "mdi-eye-settings-outline" },
+        { title: "Remove", remove: true, icon: "mdi-delete-forever-outline" }
       ],
       myBookmark: true
     }
   },
   methods: {
     /*eslint-disable */
-    removeHeadline () {
-      console.log("remove headline")
+    async removeHeadline () {
+      await this.$store.dispatch("apiCall/removeBookmarkHeadline", this.headline)
+      this.$router.push("/")
+    },
+    slugUrl (url) {
+      return `/headline/${encodeURIComponent(url.toLowerCase())}`
     }
   },
 }

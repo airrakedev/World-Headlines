@@ -115,6 +115,7 @@
                       <v-list-item-subtitle class="caption text-uppercase font-weight-bold mb-2 blue--text text--darken-1">{{ story.source.name }}</v-list-item-subtitle>
                       <h4 class="font-weight-black">{{ story.title }}</h4>
                       <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ story.publishedAt }}</v-list-item-subtitle>
+                      <LazyAppExtraBookmark :headline="story" />
                     </v-list-item-content>
                   </NuxtLink>
                 </v-list-item>
@@ -163,8 +164,10 @@ export default {
   methods: {
     async fetchArticle () {
       const headlines = await this.$store.getters["app-native/GET_HEADLINES"]
+      const bookmarks = await this.$store.getters["auth/getHeadlines"]
       const slug = this.$route.params.headlines
 
+      // given based on query
       if (headlines.length) {
         const filtered = headlines.filter(item => item.title.toLowerCase().includes(slug))
 
@@ -173,6 +176,16 @@ export default {
           return true
         }
       }
+      // bookmark
+      if (bookmarks.length) {
+        const filtered = bookmarks.filter(item => item.title.toLowerCase().includes(slug))
+
+        if (filtered.length > 0) {
+          this.headline = filtered[0]
+          return true
+        }
+      }
+
       this.$store.dispatch("app-various/setSnackbar", { status: true, timeout: 4000, message: `Article details not available.`, iconSuccess: false }, { root: true })
       return this.$router.push("/")
 

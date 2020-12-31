@@ -62,7 +62,12 @@ export default {
         // emulatorPort: process.env.NODE_ENV === "development" ? 9099 : undefined,
         emulatorHost: "http://localhost"
       },
-      firestore: true // Just as example. Can be any other service.
+      firestore: {
+        memoryOnly: false,
+        enablePersistence: true,
+        emulatorPort: undefined,
+        emulatorHost: "localhost"
+      }
     },
     lazy: false
 

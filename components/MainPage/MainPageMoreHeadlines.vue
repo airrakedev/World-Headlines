@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="mt-4">
     <template v-for="(headline, i) in moreHeadlines">
       <v-col
         :key="i"
@@ -50,6 +50,7 @@
             </h4>
             <v-card-subtitle class="pl-0 pt-1 caption font-weight-medium blue-grey--text">
               {{ headline.publishedAt }}
+              <LazyAppExtraBookmark :headline="headline" />
             </v-card-subtitle>
           </NuxtLink>
         </v-card>
@@ -67,6 +68,5 @@ export default {
       moreHeadlines: "GET_MORE_HEADLINES"
     })
   }
-
 }
 </script>
