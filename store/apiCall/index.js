@@ -101,7 +101,8 @@ export default {
         }
       } catch (err) {
         commit("app-various/setLoaderStatus", null, { root: true })
-        return this.$nuxt.error({ statusCode: 404, message: err.message })
+        // return this.$nuxt.error({ statusCode: 404, message: err.message })
+        return
       }
     },
 
