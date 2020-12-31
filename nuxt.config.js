@@ -64,7 +64,7 @@ export default {
       },
       firestore: {
         memoryOnly: false,
-        enablePersistence: true,
+        enablePersistence: false,
         emulatorPort: undefined,
         emulatorHost: "localhost"
       }
