@@ -29,7 +29,6 @@ export default {
     },
     setLoaderStatus (state) {
       state.loader = !state.loader
-      console.log("set loader status")
     },
     setUserProfileDialog (state, status) {
       state.userProfileDialog = status

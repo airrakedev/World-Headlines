@@ -18,7 +18,7 @@ export default {
     getHeadlines: state => state.headlines
   },
   mutations: {
-  /*eslint-disable*/
+    /*eslint-disable*/
     SET_HEADLINE (state, payload) {
       state.headlines = payload
     },
@@ -59,7 +59,6 @@ export default {
 
       } else {
         // Do something with the authUser and the claims object...
-        console.log(authUser, "dispatch")
         commit("AUTH_USER", authUser)
         // dispatch users bookmark
         dispatch("apiCall/featchAllBookmark", null, { root: true })
