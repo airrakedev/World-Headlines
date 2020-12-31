@@ -2,12 +2,12 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: "%s - news-nuxt",
-    title: "news-nuxt",
+    titleTemplate: "%s - Whisperer",
+    title: "Whisperer",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" }
+      { hid: "description", name: "description", content: "Top Worlwide news headlines" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
@@ -42,10 +42,10 @@ export default {
   firebase: {
     config: {
       apiKey: "AIzaSyCA-DBWYbtYcy5agmQ43SGnsI0af3Eb3GE",
-      authDomain: "news-nuxt.firebaseapp.com",
+      authDomain: "Whisperer.firebaseapp.com",
       databaseURL: "<databaseURL>",
-      projectId: "news-nuxt",
-      storageBucket: "news-nuxt.appspot.com",
+      projectId: "Whisperer",
+      storageBucket: "Whisperer.appspot.com",
       messagingSenderId: "891396339315",
       appId: "1:891396339315:web:527ed76f83096e58c39c06"
     },

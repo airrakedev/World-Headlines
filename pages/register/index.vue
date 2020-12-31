@@ -184,6 +184,15 @@ export default {
 
       }
     }
-  }
+  },
+  head () {
+    return {
+      title: "Whisperer Signup",
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: "description", name: "description", content: "Create account on Whisperer" }
+      ]
+    }
+  },
 }
 </script>
