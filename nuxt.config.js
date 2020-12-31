@@ -89,7 +89,7 @@ export default {
   env: {
     NEWS_API_KEY: "fc260dbc90004fb6bdd10fc07b07a5fb",
     // http://newsapi.org/v2/top-headlines?country=us&apiKey=fc260dbc90004fb6bdd10fc07b07a5fb
-    NEWS_API_URL: "http://newsapi.org/v2/"
+    NEWS_API_URL: "https://newsapi.org/v2/"
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
