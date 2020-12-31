@@ -1,6 +1,7 @@
 export default ({ $axios, redirect, env }) => {
   $axios.setBaseURL(env.NEWS_API_URL)
   $axios.setHeader("Access-Control-Allow-Origin", "*")
+  $axios.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS")
 
   $axios.onRequest(config => {
     config.headers.crossorigin = true
