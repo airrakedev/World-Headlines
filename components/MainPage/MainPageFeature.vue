@@ -66,6 +66,5 @@ export default {
       return `/headline/${encodeURIComponent(url.toLowerCase())}`
     }
   }
-
 }
 </script>
