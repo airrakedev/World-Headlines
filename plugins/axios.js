@@ -3,6 +3,7 @@ export default ({ $axios, redirect, env }) => {
   $axios.setHeader("Access-Control-Allow-Origin", "*")
 
   $axios.onRequest(config => {
+    config.headers.crossorigin = true
     config.headers["Content-Type"] = "application/json"
     config.headers["X-Api-Key"] = env.NEWS_API_KEY
   })
