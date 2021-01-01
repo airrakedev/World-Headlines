@@ -29,7 +29,7 @@ $ npm run generate
   #### Vuex
 
 
-#### Application Description
+## Application Description
 
 The application pulls the latest news headlines on key countries. They can select top headlines from country selection and also for specific news categories.
 
@@ -38,11 +38,11 @@ Users can also create accounts to bookmark favorite headlines and can be removed
 #### <a target="_blank" href="https://headline-whisperer.herokuapp.com/">Site Link</a>
 
 #### Sample Account:
-  email:eric@mail.com
+  email: eric@mail.com
   <br/>
   pass: password
 
 
-  <img src="https://monosnap.com/file/oJkP9CBSXxMfpheQ7gf3XWoTpJRQPU" />
-  <img src="https://monosnap.com/file/sSD2PGfZUNMcwqRYPGwANVaJ0SK4vW" />
-  <img src="https://monosnap.com/file/RY83dLrSu9VGIGSZuM5brFAqQZp9w8" />
+  <img src="static/nn-1.PNG" />
+  <img src="static/nn-2.PNG" />
+  <img src="static/nn-3.PNG" />
