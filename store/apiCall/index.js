@@ -87,12 +87,11 @@ export default {
 
     async apiQuery ({ commit, rootGetters }) {
       try {
-        /* eslint-disable */
         commit("app-various/setLoaderStatus", null, { root: true })
-        const result = await this.$axios.get(`${rootGetters["app-native/GET_DEFAULT_ENDPOINT"]}?country=${rootGetters["app-native/GET_COUNTRY"]}&category=${rootGetters["app-native/GET_NEWS_CATEGORY"]}`)
+        // const result = await this.$axios.get(`${rootGetters["app-native/GET_DEFAULT_ENDPOINT"]}?country=${rootGetters["app-native/GET_COUNTRY"]}&category=${rootGetters["app-native/GET_NEWS_CATEGORY"]}`)
+        const result = await this.$axios.get(`/news-feed/?country=${rootGetters["app-native/GET_COUNTRY"]}&category=${rootGetters["app-native/GET_NEWS_CATEGORY"]}`)
 
         if (result) {
-
           const { articles } = result.data
           commit("app-native/setHeadlines", articles, { root: true })
           // loader
@@ -102,14 +101,13 @@ export default {
       } catch (err) {
         commit("app-various/setLoaderStatus", null, { root: true })
         // return this.$nuxt.error({ statusCode: 404, message: err.message })
-        return
       }
     },
 
     async apiSearch ({ dispatch, commit, rootGetters }, payload) {
       try {
         commit("app-various/setLoaderStatus", null, { root: true })
-        const search = await this.$axios.get(`${rootGetters["app-native/GET_DEFAULT_ENDPOINT"]}?q=${payload}`)
+        const search = await this.$axios.get(`/news-feed/?q=${payload}`)
 
         if (search.data.status !== "error") {
           commit("app-various/setLoaderStatus", null, { root: true })
@@ -123,7 +121,6 @@ export default {
           commit("app-native/setHeadlines", articles, { root: true })
           return articles
         }
-
       } catch (err) {
         commit("app-various/setLoaderStatus", null, { root: true })
         return this.$nuxt.error({ statusCode: 404, message: err.message })

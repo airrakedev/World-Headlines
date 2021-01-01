@@ -58,7 +58,7 @@
             class="subheading blue-grey--text font-weight-bold mr-2 body-2"
           >{{ headline.source.name }}</span>
         </div>
-        <span class="grey--text caption font-weight-bold">{{ headline.publishedAt }}</span>
+        <span class="grey--text caption font-weight-bold">{{ formatDate(headline.publishedAt) }}</span>
         <v-card
           class="mx-auto mt-5"
           tile
@@ -114,7 +114,7 @@
                     <v-list-item-content class="py-2">
                       <v-list-item-subtitle class="caption text-uppercase font-weight-bold mb-2 blue--text text--darken-1">{{ story.source.name }}</v-list-item-subtitle>
                       <h4 class="font-weight-black">{{ story.title }}</h4>
-                      <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ story.publishedAt }}</v-list-item-subtitle>
+                      <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ formatDate(story.publishedAt) }}</v-list-item-subtitle>
                       <LazyAppExtraBookmark :headline="story" />
                     </v-list-item-content>
                   </NuxtLink>
@@ -188,7 +188,10 @@ export default {
 
       this.$store.dispatch("app-various/setSnackbar", { status: true, timeout: 4000, message: `Article details not available.`, iconSuccess: false }, { root: true })
       return this.$router.push("/")
-
+    },
+    formatDate (value) {
+      if (!value) { return "" }
+      return this.$moment(value).format("MMM Do YY")
     }
   },
   created () {

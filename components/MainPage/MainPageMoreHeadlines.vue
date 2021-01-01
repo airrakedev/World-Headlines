@@ -49,7 +49,7 @@
               {{ headline.title }}
             </h4>
             <v-card-subtitle class="pl-0 pt-1 caption font-weight-medium blue-grey--text">
-              {{ headline.publishedAt }}
+              {{ formatDate(headline.publishedAt) }}
               <LazyAppExtraBookmark :headline="headline" />
             </v-card-subtitle>
           </NuxtLink>
@@ -67,6 +67,12 @@ export default {
     ...mapGetters("app-native", {
       moreHeadlines: "GET_MORE_HEADLINES"
     })
+  },
+  methods: {
+    formatDate (value) {
+      if (!value) { return "" }
+      return this.$moment(value).format("MMM Do YY")
+    }
   }
 }
 </script>

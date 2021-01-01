@@ -32,12 +32,14 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     "@nuxtjs/stylelint-module",
     // https://go.nuxtjs.dev/vuetify
-    "@nuxtjs/vuetify"
+    "@nuxtjs/vuetify",
+    "@nuxtjs/moment"
   ],
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/firebase"
+    "@nuxtjs/firebase",
+    "@nuxtjs/proxy"
   ],
 
   firebase: {
@@ -89,7 +91,20 @@ export default {
   env: {
     NEWS_API_KEY: "fc260dbc90004fb6bdd10fc07b07a5fb",
     // http://newsapi.org/v2/top-headlines?country=us&apiKey=fc260dbc90004fb6bdd10fc07b07a5fb
-    NEWS_API_URL: "https://newsapi.org/v2/"
+    NEWS_API_URL: "https://newsapi.org/v2/top-headlines"
+  },
+
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    "/news-feed/": {
+      target: process.env.NEWS_API_URL || "https://newsapi.org/v2/top-headlines",
+      pathRewrite: {
+        "^/news-feed/": ""
+      }
+    }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

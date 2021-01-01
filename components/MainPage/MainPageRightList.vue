@@ -17,7 +17,7 @@
             <v-list-item-content class="py-2 list-">
               <v-list-item-subtitle class="caption text-uppercase font-weight-bold mb-2 purple--text text--darken-1">{{ headline.source.name }}</v-list-item-subtitle>
               <h4 class="font-weight-black  blue-grey--text text--darken-1">{{ headline.title }}</h4>
-              <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ headline.publishedAt }}</v-list-item-subtitle>
+              <v-list-item-subtitle class="caption font-weight-medium mt-1 blue-grey--text">{{ formatDate(headline.publishedAt) }}</v-list-item-subtitle>
 
               <LazyAppExtraBookmark :headline="headline" />
 
@@ -49,6 +49,10 @@ export default {
     },
     async bookmarkHeadline (headline) {
       await this.$store.dispatch("apiCall/bookmarkHeadline", headline)
+    },
+    formatDate (value) {
+      if (!value) { return "" }
+      return this.$moment(value).format("MMM Do YY")
     }
   }
 
