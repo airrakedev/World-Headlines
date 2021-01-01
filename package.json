@@ -7,6 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style"
@@ -14,6 +15,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.4",
     "@nuxtjs/firebase": "^7.2.2",
+    "@nuxtjs/proxy": "^2.1.0",
     "cookie": "^0.4.1",
     "core-js": "^3.6.5",
     "firebase": "^8.2.1",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/vuetify": "^1.11.2",
     "babel-eslint": "^10.1.0",

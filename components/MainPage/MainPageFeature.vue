@@ -1,5 +1,6 @@
 <template>
   <v-card
+    v-if="!leadHeadline.hasOwnProperty('name')"
     class="mx-auto"
     flat
     tile
@@ -35,10 +36,10 @@
         <v-card-title class="pt-1 font-weight-black">{{ leadHeadline.title }}</v-card-title>
         <v-card-subtitle
           v-if="leadHeadline.publishedAt"
-          class="mb-3 caption pt-0 font-weight-light white--text"
+          class="mb-3 caption pt-0 font-weight-bold warning--text text-capitalize"
         >
           <!-- Dec 19, 2020 -->
-          {{ leadHeadline.publishedAt }}
+          {{ formatDate(leadHeadline.publishedAt) }}
         </v-card-subtitle>
       </v-img>
     </NuxtLink>
@@ -50,11 +51,13 @@ import { mapGetters } from "vuex"
 
 export default {
   name: "MainPageFeature",
+
   computed: {
     ...mapGetters("app-native", {
       leadHeadline: "GET_LEAD_HEADLINE"
     })
   },
+
   methods: {
     availableLeadImage (image) {
       if (image) {
@@ -63,9 +66,15 @@ export default {
       return "https://sutvacha.s3.amazonaws.com/media/public/product/no-image-available.png"
     },
     slugUrl (url) {
-      return `/headline/${encodeURIComponent(url.toLowerCase())}`
+      if (url) {
+        return `/headline/${encodeURIComponent(url.toLowerCase())}`
+      }
+      return "/"
+    },
+    formatDate (value) {
+      if (!value) { return "" }
+      return this.$moment(value, "YYYYMMDD").fromNow()
     }
   }
-
 }
 </script>
