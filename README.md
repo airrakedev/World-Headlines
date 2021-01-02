@@ -37,7 +37,7 @@ Users can also create accounts to bookmark favorite headlines and can be removed
 
 ## Checkout Page Preview 
 
-### <a href="https://headline-whisperer.herokuapp.com" rel="noopener">Site Link</a>
+### The app can be found at<a href="https://headline-whisperer.herokuapp.com" rel="noopener">https://headline-whisperer.herokuapp.com</a>
 
 ## Sample Account:
   email: eric@mail.com
