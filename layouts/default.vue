@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <!-- left drawer -->
-    <LazyAppLayoutLeftDrawer />
+    <!-- <LazyAppLayoutLeftDrawer /> -->
     <!-- navigation top bar -->
     <LazyAppLayoutAppbar />
     <!-- main wrapper -->
