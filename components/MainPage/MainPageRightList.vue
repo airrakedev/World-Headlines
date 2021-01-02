@@ -52,7 +52,7 @@ export default {
     },
     formatDate (value) {
       if (!value) { return "" }
-      return this.$moment(value).format("MMM Do YY")
+      return this.$moment(value, "YYYYMMDD").fromNow()
     }
   }
 
