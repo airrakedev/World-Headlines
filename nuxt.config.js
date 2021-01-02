@@ -1,4 +1,3 @@
-
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -38,17 +37,34 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/firebase",
-    "@nuxtjs/proxy"
+    "@nuxtjs/proxy",
+    "@nuxtjs/firebase"
   ],
+
+  axios: {
+    proxy: true,
+    credentials: true
+  },
+
+  proxy: {
+    "/news-feed/": {
+      target: process.env.NEWS_API_URL || "https://newsapi.org/v2/top-headlines",
+      pathRewrite: {
+        "^/news-feed/": ""
+      }
+    }
+  },
 
   firebase: {
     config: {
       apiKey: "AIzaSyCA-DBWYbtYcy5agmQ43SGnsI0af3Eb3GE",
-      authDomain: "Whisperer.firebaseapp.com",
+      // authDomain: "Whisperer.firebaseapp.com",
+      authDomain: "news-nuxt.firebaseapp.com",
       databaseURL: "<databaseURL>",
-      projectId: "Whisperer",
-      storageBucket: "Whisperer.appspot.com",
+      // projectId: "Whisperer",
+      projectId: "news-nuxt",
+      // storageBucket: "Whisperer.appspot.com",
+      storageBucket: "news-nuxt.appspot.com",
       messagingSenderId: "891396339315",
       appId: "1:891396339315:web:527ed76f83096e58c39c06"
     },
@@ -67,7 +83,7 @@ export default {
       },
       firestore: {
         memoryOnly: false,
-        enablePersistence: false,
+        enablePersistence: true,
         emulatorPort: undefined,
         emulatorHost: "localhost"
       }
@@ -92,19 +108,6 @@ export default {
     NEWS_API_KEY: "fc260dbc90004fb6bdd10fc07b07a5fb",
     // http://newsapi.org/v2/top-headlines?country=us&apiKey=fc260dbc90004fb6bdd10fc07b07a5fb
     NEWS_API_URL: "https://newsapi.org/v2/top-headlines"
-  },
-
-  axios: {
-    proxy: true
-  },
-
-  proxy: {
-    "/news-feed/": {
-      target: process.env.NEWS_API_URL || "https://newsapi.org/v2/top-headlines",
-      pathRewrite: {
-        "^/news-feed/": ""
-      }
-    }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
