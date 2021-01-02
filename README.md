@@ -36,8 +36,8 @@ The application pulls the latest news headlines on key countries. They can selec
 Users can also create accounts to bookmark favorite headlines and can be removed later. They can also select their own avatar profile.
 
 ## Checkout Page Preview 
-[Site link here](https://headline-whisperer.herokuapp.com)
-### The app can be found at <a href="https://headline-whisperer.herokuapp.com/">https://headline-whisperer.herokuapp.com</a>
+
+### The app can be found at https://headline-whisperer.herokuapp.com
 
 ## Sample Account:
   email: eric@mail.com
