@@ -20,7 +20,7 @@
               height="200"
               class="white--text align-end"
               :src="`${headline.urlToImage}`"
-              :lazy-src="`${headline.urlToImage}`"
+              lazy-src="https://lh3.googleusercontent.com/proxy/Nhgbg4_XzHoQ32vdmcNjmBzUV9iWrCdzXhiPRkyuLhAUZjHsv4F8n6uluKVj8LoR1cWCYj3bMdsg9I4oRLy0HI-eo4oTIEhWqunHpQVl5tafNeEZxsZ5l6hpfiM5KiI1Tg"
               aspect-ratio="1"
             >
               <template v-slot:placeholder>
