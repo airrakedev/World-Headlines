@@ -6,7 +6,7 @@ importScripts(
 importScripts(
   'https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js'
 )
-firebase.initializeApp({"apiKey":"AIzaSyCA-DBWYbtYcy5agmQ43SGnsI0af3Eb3GE","authDomain":"Whisperer.firebaseapp.com","databaseURL":"\u003CdatabaseURL\u003E","projectId":"Whisperer","storageBucket":"Whisperer.appspot.com","messagingSenderId":"891396339315","appId":"1:891396339315:web:527ed76f83096e58c39c06"})
+firebase.initializeApp({"apiKey":"AIzaSyCA-DBWYbtYcy5agmQ43SGnsI0af3Eb3GE","authDomain":"news-nuxt.firebaseapp.com","databaseURL":"\u003CdatabaseURL\u003E","projectId":"news-nuxt","storageBucket":"news-nuxt.appspot.com","messagingSenderId":"891396339315","appId":"1:891396339315:web:527ed76f83096e58c39c06"})
 
 // Initialize authService
 const authService = firebase.auth()

@@ -30,28 +30,29 @@ export default {
         .catch(error => commit("app-various/settingSnackbar", { status: true, timeout: 4000, message: error.message, iconSuccess: false }, { root: true }))
     },
 
+    /*eslint-disable*/
     // get all users bookmark
     async featchAllBookmark ({ commit, dispatch, rootState, rootGetters }) {
+
       // check if users is authenticated
       if (!rootGetters["auth/isAuthenticated"]) { return }
-
       try {
         const { email } = rootGetters["auth/getUser"]
         const headline = await this.$fire.firestore.doc(`headlines/${email}/`).collection("bookmark")
+
           .onSnapshot(querySnapshot => {
             const feed = []
             querySnapshot.forEach(doc => {
               feed.push(doc.data())
             })
-            // commit("auth/SET_HEADLINE", feed, { root: true })
+            // commit("auth/SET_HEADLINE", feed, { root: true })            
             dispatch("auth/updateHeadline", feed, { root: true })
           })
-
         // stop listener
         commit("SET_LISTENER_UNSUBSCRIBE", headline)
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(error.message, "Headlines realtime fetching got problems.")
+        console.log(error, "Headlines realtime fetching got problems.")
       }
     },
 
@@ -79,6 +80,7 @@ export default {
         commit("app-various/settingSnackbar", { status: true, timeout: 4000, message: "Got problems", iconSuccess: false }, { root: true })
         return
       } catch (error) {
+        console.log(error, "error Bookmark")
         commit("app-various/setLoaderStatus", null, { root: true })
         // success snackbar
         commit("app-various/settingSnackbar", { status: true, timeout: 4000, message: error.message, iconSuccess: false }, { root: true })

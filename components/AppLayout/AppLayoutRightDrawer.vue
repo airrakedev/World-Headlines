@@ -32,6 +32,7 @@
         </v-card>
       </v-row>
     </v-container>
+
     <v-list
       v-if="headlines.length"
       two-line
@@ -112,7 +113,6 @@ export default {
   mounted () {
     if (this.$store.getters["auth/isAuthenticated"]) {
       this.$store.dispatch("apiCall/featchAllBookmark")
-      console.log("initialize")
     }
   },
 }
