@@ -35,6 +35,8 @@ The application pulls the latest news headlines on key countries. They can selec
 
 Users can also create accounts to bookmark favorite headlines and can be removed later. They can also select their own avatar profile.
 
+A fully mobile-friendly application
+
 ## Checkout Page Preview 
 
 ### The app can be found at https://headline-whisperer.herokuapp.com
