@@ -121,6 +121,7 @@
       <v-container
         fill-height
         class="pa-0"
+        fluid
       >
         <v-row
           align="center"
@@ -128,7 +129,7 @@
         >
           <v-col
             cols="10"
-            class="pa-0 text-center"
+            class="pa-0 text-center mt-sm-3 hidden-sm-and-down"
           >
             <div>
               <a
@@ -145,9 +146,33 @@
           </v-col>
           <v-col
             cols="2"
-            class="pa-0"
+            class="pa-0 hidden-sm-and-down"
           >
             <LazyAppLayoutMenuSearch />
+          </v-col>
+          <!-- colums for mobile devices -->
+          <v-col
+            cols="12"
+            class="hidden-md-and-up"
+          >
+            <v-row>
+              <v-col
+                cols="6"
+                class="
+                mt-2"
+              >
+                <LazyAppMenusMobileSelectCountries />
+              </v-col>
+              <v-spacer />
+              <v-col
+                cols="6"
+                class="
+                mt-2
+                text-right"
+              >
+                <LazyAppMenusMobileSelectCategories />
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-container>

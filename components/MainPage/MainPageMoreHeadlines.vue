@@ -3,9 +3,9 @@
     <template v-for="(headline, i) in moreHeadlines">
       <v-col
         :key="i"
-        cols="3"
         md="4"
         sm="6"
+        cols="12"
       >
         <v-card
           tile

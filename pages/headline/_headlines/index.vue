@@ -31,7 +31,7 @@
       align="start"
     >
       <v-col
-        cols="10"
+        cols="12"
         md="8"
         sm="12"
       >
@@ -85,7 +85,7 @@
         </v-card>
       </v-col>
       <v-col
-        cols="2"
+        cols="12"
         md="4"
         sm="12"
         class="pl-5"

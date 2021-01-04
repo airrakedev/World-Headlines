@@ -5,9 +5,9 @@
       justify="center"
     >
       <v-col
-        cols="6"
+        cols="12"
         md="5"
-        sm="6"
+        sm="8"
       >
 
         <v-card

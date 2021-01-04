@@ -10,14 +10,13 @@
       <v-col
         cols="2"
         md="2"
-        sm="4"
+        class="hidden-sm-and-down"
       >
         <LazyMainPageSideCategories />
       </v-col>
       <v-col
-        cols="8"
         md="10"
-        sm="8"
+        sm="12"
       >
         <v-container
           fill-height
@@ -28,17 +27,15 @@
             align="start"
           >
             <v-col
-              cols="7"
               md="7"
-              sm="9"
-              class="pt-0"
+              sm="12"
+              class="pt-0 mb-sm-4"
             >
               <LazyMainPageFeature />
             </v-col>
             <v-col
-              cols="5"
               md="5"
-              sm="3"
+              sm="12"
               class="pt-0"
             >
               <LazyMainPageRightList />
@@ -51,7 +48,7 @@
               sm="12"
               class=""
             >
-              <h1 class="mt-5">
+              <h1 class="mt-5 text-md-left text-sm-center">
                 More Headlines
               </h1>
             </v-col>
