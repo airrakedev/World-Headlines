@@ -39,7 +39,7 @@ A fully mobile-friendly application
 
 ## Checkout Page Preview 
 
-### The app can be found at https://headline-whisperer.herokuapp.com
+#### The app can be found at <i>headline-whisperer.herokuapp.com</i>
 
 ## Sample Account:
   email: eric@mail.com
