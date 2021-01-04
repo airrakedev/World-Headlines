@@ -9,7 +9,6 @@
         md="5"
         sm="8"
       >
-
         <v-card
           elevation="2"
           class="pa-5"
