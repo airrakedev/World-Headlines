@@ -17,7 +17,7 @@ $ npm run start
 $ npm run generate
 ```
 
-# Top Headlines News Worldwide, A NuxtJs Application build, powered by News API.
+# Top News Headlines Worldwide, A NuxtJs Application build, powered by News API.
 
 
 ## Build Applications Tools
