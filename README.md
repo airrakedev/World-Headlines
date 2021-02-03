@@ -1,4 +1,4 @@
-# news-nuxt
+# News-Nuxt
 
 ## Build Setup
 
@@ -40,13 +40,15 @@ Users can also create accounts to bookmark favorite headlines and can be removed
 A fully mobile-friendly application
 
 ## Checkout Page Preview 
-
-#### The app can be found at <i>headline-whisperer.herokuapp.com</i>
+```
+The app can be found at <i>headline-whisperer.herokuapp.com</i>
+```
 
 ## Sample Account:
-  email: eric@mail.com
-  <br/>
+```
+  email: eric@mail.com  
   pass: password
+ ```
 
 
   <img src="static/nn-1.PNG" />
