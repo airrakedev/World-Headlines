@@ -22,12 +22,12 @@ $ npm run generate
 
 ## Build Applications Tools
 ```
-  #### News API
-  #### Firebase - Auth
-  #### Firebase - Firestore
-  #### Axios
-  #### Vuetify
-  #### Vuex
+  News API
+  Firebase - Auth
+  Firebase - Firestore
+  Axios
+  Vuetify
+  Vuex
   ```
 
 
