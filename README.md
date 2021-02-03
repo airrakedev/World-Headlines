@@ -17,7 +17,7 @@ $ npm run start
 $ npm run generate
 ```
 
-# A NuxtJs Application build for top headlines worldwide with News API
+# Top Headlines News Worldwide, A NuxtJs Application build, powered by News API.
 
 
 ## Build Applications Tools
@@ -41,7 +41,7 @@ A fully mobile-friendly application
 
 ## Checkout Page Preview 
 ```
-The app can be found at <i>headline-whisperer.herokuapp.com</i>
+The app can be found at headline-whisperer.herokuapp.com
 ```
 
 ## Sample Account:
