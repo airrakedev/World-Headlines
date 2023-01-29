@@ -1,10 +1,10 @@
 const ignorePaths = ["\u002F__webpack_hmr","\u002F_loading","\u002F_nuxt\u002F"]
 
 importScripts(
-  'https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js'
+  'https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js'
 )
 importScripts(
-  'https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js'
+  'https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js'
 )
 firebase.initializeApp({"apiKey":"AIzaSyCA-DBWYbtYcy5agmQ43SGnsI0af3Eb3GE","authDomain":"news-nuxt.firebaseapp.com","databaseURL":"\u003CdatabaseURL\u003E","projectId":"news-nuxt","storageBucket":"news-nuxt.appspot.com","messagingSenderId":"891396339315","appId":"1:891396339315:web:527ed76f83096e58c39c06"})
 
@@ -72,8 +72,9 @@ self.addEventListener('fetch', (event) => {
     return path.test(url.pathname.slice(1))
   })
 
+  // https://github.com/nuxt-community/firebase-module/issues/465
   if (!expectsHTML || !isSameOrigin || !isHttps || isIgnored) {
-    event.respondWith(fetch(event.request))
+      event.respondWith(fetch(event.request))
 
     return
   }

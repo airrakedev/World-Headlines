@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt --port 8000",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",    
+    "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.4",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.20.5",
+    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/firebase": "^7.2.2",
     "@nuxtjs/proxy": "^2.1.0",
+    "add": "^2.0.6",
     "cookie": "^0.4.1",
     "core-js": "^3.6.5",
     "firebase": "^8.2.1",
@@ -25,6 +29,7 @@
     "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/moment": "^1.6.1",
