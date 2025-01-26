@@ -17,6 +17,10 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   target: "server",
+  server: {
+    port: process.env.PORT || 3000, // Use Heroku's port or fallback to 3000
+    host: '0.0.0.0', // Listen on all network interfaces
+  },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ["~/assets/main.scss", "~/assets/main.css"],
